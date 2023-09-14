@@ -1,14 +1,20 @@
-const urlBase = 'https://pydolarvenezuela-api.vercel.app/'
+const urlBase = 'https://pydolarvenezuela-api.vercel.app/';
 
-let table = document.getElementById('tablaDolares')
-let filtro = document.getElementById('filtro')
+let fecha = document.getElementById('fecha');
+let table = document.getElementById('tablaDolares');
+let filtro = document.getElementById('filtro');
 
 async function getMonitorsJSON(url) {
-    const response = await axios.get(url)
+    const response = await axios.get(url);
 
     if (response.status == 200) {
-        return response.data
+        return response.data;
     }
+}
+
+async function getDate() {
+    const date = await getMonitorsJSON(urlBase + 'api/v1/dollar/fecha');
+    fecha.innerText = `${date['datetime']['date']} ${date['datetime']['time']}`;
 }
 
 async function getValuesTable() {
@@ -16,26 +22,28 @@ async function getValuesTable() {
         table.deleteRow(1);
     }
 
-    var _monitors = await getMonitorsJSON(urlBase + 'api/v1/dollar/')
-    _monitors = _monitors['monitors']
+    var _monitors = await getMonitorsJSON(urlBase + 'api/v1/dollar/');
+    _monitors = _monitors['monitors'];
 
     if (filtro.value !== 'todos') {
-        _monitors = await getMonitorsJSON(urlBase + 'api/v1/dollar/' + filtro.value)
+        _monitors = await getMonitorsJSON(urlBase + 'api/v1/dollar/' + filtro.value);
     }
 
     for (let monitor in _monitors) {
-        let row = document.createElement('tr')
+        let row = document.createElement('tr');
 
         row.innerHTML = '<td>' + _monitors[monitor].title + '</td>' +
                         '<td>' + _monitors[monitor].price + '</td>' +
                         '<td style="color:' + _monitors[monitor].color + ';">' + _monitors[monitor].percent + '</td>' +
                         '<td style="color:' + _monitors[monitor].color + ';">' + _monitors[monitor].change + '</td>' +
                         '<td>' + _monitors[monitor].last_update + '</td>';
-        table.appendChild(row)
+        table.appendChild(row);
     
 
     }
-}
+};
 
 filtro.addEventListener('change', getValuesTable);
 window.onload = getValuesTable;
+
+getDate();
