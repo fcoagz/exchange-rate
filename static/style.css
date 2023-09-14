@@ -1,3 +1,7 @@
+.resaltado {
+    font-weight: bold;
+  }
+
 table {
     display: table;
     border-collapse: separate;
