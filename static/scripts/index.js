@@ -43,7 +43,7 @@ async function getValuesTable() {
     }
 }
 
+getDate();
+
 filtro.addEventListener('change', getValuesTable);
 window.onload = getValuesTable;
-
-getDate();
