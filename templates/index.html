@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Rate</title>
+    <meta name="description" content="Exchange Rate te informa sobre el precio del dólar en diferentes monitores de Venezuela.">
+    <meta name="keywords" content="pyDolarVenezuela, fcoagz, Dolar en Venezuela, Dolar Venezuela, Dólar Paralelo">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1>Monitores del Dólar</h1>
+    <p>Utiliza la API de <a href="https://github.com/fcoagz/api-pydolarvenezuela" target="_blank">pyDolarVenezuela</a> para brindar información informativa sobre los datos del dólar en varios monitores de Venezuela. La información es proporcionada por <a href="https://exchangemonitor.net/" target="_blank">Exchange Monitor</a>.</p>
+    <p>Desarrollado por <a href="https://github.com/fcoagz" target="_blank" rel="follow me">Francisco Griman</a>.</p>
+
+    <select id="filtro">
+        <option value="todos">Todos</option>
+        <option value="dolar_promedio">Dólar Promedio</option>
+        <option value="bcv_oficial">BCV</option>
+        <option value="paginas">Paginas</option>
+        <option value="monederos_electronicos">Monederos Electronicos</option>
+    </select>
+
+    <table id="tablaDolares">
+        <tr>
+        <th>MONITOR</th>
+        <th>PRECIO</th>
+        <th>PORCENTAJE</th> 
+        <th>CAMBIO</th>
+        <th>FECHA</th>
+        </tr>
+    </table>
+    <script src="{{url_for('static', filename='scripts/index.js')}}"></script>
+</body>
+</html>

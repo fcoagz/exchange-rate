@@ -1,0 +1,25 @@
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+#tablaDolares {
+    border: 1px solid #000000;
+    font: 11px Arial;
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid #000000;
+}
+
+th {
+    background-color: #f2f2f2;
+}
